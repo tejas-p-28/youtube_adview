@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube AdView Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        input[type="submit"]:hover {
+            background-color: #cc0000;
+        }
+        .prediction {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e8;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>YouTube AdView Predictor</h2>
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="views">Views:</label>
+                <input type="number" name="views" placeholder="Enter number of views" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="likes">Likes:</label>
+                <input type="number" name="likes" placeholder="Enter number of likes" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="dislikes">Dislikes:</label>
+                <input type="number" name="dislikes" placeholder="Enter number of dislikes" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="comment">Comments:</label>
+                <input type="number" name="comment" placeholder="Enter number of comments" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="published">Published Date:</label>
+                <input type="date" name="published" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="duration">Duration (in seconds):</label>
+                <input type="number" name="duration" placeholder="Enter duration in seconds" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select name="category" required>
+                    <option value="">Select a category</option>
+                    <option value="A">A - Film & Animation</option>
+                    <option value="B">B - Autos & Vehicles</option>
+                    <option value="C">C - Music</option>
+                    <option value="D">D - Pets & Animals</option>
+                    <option value="E">E - Sports</option>
+                    <option value="F">F - Travel & Events</option>
+                    <option value="G">G - Gaming</option>
+                    <option value="H">H - People & Blogs</option>
+                </select>
+            </div>
+            
+            <input type="submit" value="Predict AdView">
+        </form>
+
+        {% if prediction_text %}
+            <div class="prediction">
+                <h3>{{ prediction_text }}</h3>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
